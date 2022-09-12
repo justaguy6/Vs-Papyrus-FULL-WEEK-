@@ -1,6 +1,7 @@
 
 package;
 
+#if windows
 import flixel.math.FlxMath;
 import flixel.ui.FlxBar;
 import flixel.text.FlxText;
@@ -171,3 +172,4 @@ class Cache extends FlxState
 			});
     }
 }
+#end

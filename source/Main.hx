@@ -86,7 +86,6 @@ class Main extends Sprite
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
-		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
@@ -94,8 +93,7 @@ class Main extends Sprite
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
-		#end
-
+		
 		#if html5
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
@@ -108,6 +106,7 @@ class Main extends Sprite
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
 	// very cool person for real they don't get enough credit for their work
+	#if windows
 	#if CRASH_HANDLER
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
@@ -148,3 +147,4 @@ class Main extends Sprite
 	}
 	#end
 }
+#end

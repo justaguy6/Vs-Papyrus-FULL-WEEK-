@@ -68,7 +68,7 @@ import Conductor.Rating;
 import sys.FileSystem;
 #end
 
-#if windows
+#if VIDEOS_ALLOWED
 import vlc.MP4Handler;
 #end
 
@@ -1548,10 +1548,7 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		tut.cameras = [camOther];
-	
-                #if android
-		addAndroidControls();
-		#end
+
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1699,11 +1696,9 @@ class PlayState extends MusicBeatState
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
-					#if windows
 					var video:MP4Handler = new MP4Handler();
 					video.playVideo(Paths.video('intro'));
 					video.finishCallback = function() 
-						 #end
 					{
 						papyintro(doof);
 					}
@@ -1897,11 +1892,11 @@ class PlayState extends MusicBeatState
 
 	public function startVideo(name:String)
 	{
-		#if windows
+		#if VIDEOS_ALLOWED
 		inCutscene = true;
 
 		var filepath:String = Paths.video(name);
-		#if windows
+		#if sys
 		if(!FileSystem.exists(filepath))
 		#else
 		if(!OpenFlAssets.exists(filepath))
@@ -2421,10 +2416,6 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
-			#if android
-		androidControls.visible = true;
-		#end
-			
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			if(currentSong == 'bad to the bone'){
@@ -2870,7 +2861,7 @@ class PlayState extends MusicBeatState
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
 		var file:String = Paths.json(songName + '/events');
-		#if windows
+		#if MODS_ALLOWED
 		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file)) {
 		#else
 		if (OpenFlAssets.exists(file)) {
@@ -4995,11 +4986,9 @@ class PlayState extends MusicBeatState
 						{
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
-							#if windows
 							var video:MP4Handler = new MP4Handler();
 							video.playVideo(Paths.video('final'));
 							video.finishCallback = function() {
-								 #end
 								WeekData.loadTheFirstEnabledMod();
 								FlxG.sound.playMusic(Paths.music('freakyMenu'));
 	

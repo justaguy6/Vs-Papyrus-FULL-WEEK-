@@ -1548,7 +1548,10 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		tut.cameras = [camOther];
-
+	
+.               #if android
+addAndroidControls();
+#end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -2416,6 +2419,10 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
+			#if android
+			androidControls.visible = true;
+			#end
+				
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			if(currentSong == 'bad to the bone'){

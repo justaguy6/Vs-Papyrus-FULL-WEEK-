@@ -11,6 +11,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
+import sys.FileSystem;
 
 //crash handler stuff
 #if CRASH_HANDLER
@@ -37,6 +38,10 @@ class Main extends Sprite
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 	public static var fpsVar:FPS;
 	public static var gameName:String = "Friday Night Funkin' Vs THE GREAT PAPYRUS!!";
+
+        static final videoFiles:Array<String> = [
+		
+	]; // put here names of all videos without .mp4, example "final"
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -81,6 +86,17 @@ class Main extends Sprite
 			zoom = Math.min(ratioX, ratioY);
 			gameWidth = Math.ceil(stageWidth / zoom);
 			gameHeight = Math.ceil(stageHeight / zoom);
+		}
+
+                if (!FileSystem.exists(lime.system.System.applicationStorageDirectory + 'assets')) {
+			FileSystem.createDirectory(lime.system.System.applicationStorageDirectory + 'assets');
+		}
+		if (!FileSystem.exists(lime.system.System.applicationStorageDirectory + 'assets/videos')) {
+			FileSystem.createDirectory(lime.system.System.applicationStorageDirectory + 'assets/videos');
+		}
+
+                for (vid in videoFiles) {
+			File.saveBytes(Paths.video(vid), Assets.getBytes('videos:' + Paths._video(vid)));
 		}
 	
 		ClientPrefs.loadDefaultKeys();

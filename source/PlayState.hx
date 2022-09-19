@@ -1549,7 +1549,7 @@ class PlayState extends MusicBeatState
 		doof.cameras = [camHUD];
 		tut.cameras = [camOther];
 	
-.               #if android
+               #if android
 addAndroidControls();
 #end
 

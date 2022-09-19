@@ -1892,7 +1892,33 @@ class PlayState extends MusicBeatState
 
 	public function startVideo(name:String)
 	{
-		
+		#if VIDEOS_ALLOWED
+		inCutscene = true;
+
+		var filepath:String = Paths.video(name);
+		#if sys
+		if(!FileSystem.exists(filepath))
+		#else
+		if(!OpenFlAssets.exists(filepath))
+		#end
+		{
+			FlxG.log.warn('Couldnt find video file: ' + name);
+			startAndEnd();
+			return;
+		}
+
+		var video:MP4Handler = new MP4Handler();
+		video.playVideo(filepath);
+		video.finishCallback = function()
+		{
+			startAndEnd();
+			return;
+		}
+		#else
+		FlxG.log.warn('Platform not supported!');
+		startAndEnd();
+		return;
+		#end
 	}
 
 	function startAndEnd()
@@ -4960,7 +4986,9 @@ class PlayState extends MusicBeatState
 						{
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
-							
+							var video:MP4Handler = new MP4Handler();
+							video.playVideo(Paths.video('final'));
+							video.finishCallback = function() {
 								WeekData.loadTheFirstEnabledMod();
 								FlxG.sound.playMusic(Paths.music('freakyMenu'));
 	

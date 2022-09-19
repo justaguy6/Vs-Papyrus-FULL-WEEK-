@@ -20,7 +20,7 @@ import sys.FileSystem;
 import flixel.graphics.FlxGraphic;
 import openfl.display.BitmapData;
 import haxe.Json;
-import lime.system.System;
+import lime.system.System as Shit;
 
 import flash.media.Sound;
 
@@ -194,12 +194,12 @@ class Paths
 	static public function video(key:String)
 	{
 		#if MODS_ALLOWED
-		var file:String = System.applicationStorageDirectory + modsVideo(key);
+		var file:String = Shit.applicationStorageDirectory + modsVideo(key);
 		if(FileSystem.exists(file)) {
 			return file;
 		}
 		#end
-		return System.applicationStorageDirectory + 'assets/videos/$key.$VIDEO_EXT';
+		return Shit.applicationStorageDirectory + 'assets/videos/$key.$VIDEO_EXT';
 	}
 
         static public function _video(key:String)

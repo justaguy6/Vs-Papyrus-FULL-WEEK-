@@ -1699,9 +1699,11 @@ class PlayState extends MusicBeatState
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
+					#if windows
 					var video:MP4Handler = new MP4Handler();
 					video.playVideo(Paths.video('intro'));
 					video.finishCallback = function() 
+						 #end
 					{
 						papyintro(doof);
 					}
@@ -4993,9 +4995,11 @@ class PlayState extends MusicBeatState
 						{
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
+							#if windows
 							var video:MP4Handler = new MP4Handler();
 							video.playVideo(Paths.video('final'));
 							video.finishCallback = function() {
+								 #end
 								WeekData.loadTheFirstEnabledMod();
 								FlxG.sound.playMusic(Paths.music('freakyMenu'));
 	

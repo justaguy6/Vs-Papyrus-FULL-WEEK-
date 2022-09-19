@@ -21,10 +21,10 @@ import haxe.CallStack;
 import haxe.io.Path;
 import Discord.DiscordClient;
 import sys.FileSystem;
-import sys.io.File;
 import sys.io.Process;
 #end
 
+import sys.io.File;
 using StringTools;
 
 class Main extends Sprite

@@ -68,7 +68,7 @@ import Conductor.Rating;
 import sys.FileSystem;
 #end
 
-#if VIDEOS_ALLOWED
+#if windows
 import vlc.MP4Handler;
 #end
 

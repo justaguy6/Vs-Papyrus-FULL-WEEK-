@@ -4991,6 +4991,9 @@ addAndroidControls();
 						{
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
+							/*var video:VideoHandler = new VideoHandler();
+							video.playVideo(Paths.video('final'));
+							video.finishCallback = function()*/ {
 							
 								WeekData.loadTheFirstEnabledMod();
 								FlxG.sound.playMusic(Paths.music('freakyMenu'));

@@ -211,7 +211,7 @@ class DialogueBox extends FlxSpriteGroup
 		// dialogue.x = 90;
 		// add(dialogue);
 		if (ClientPrefs.languageType == "Espanol")
-			skip.text = "Presiona ESC para saltear el dialogo";
+			skip.text = "Clique Na Tela Para Pular o Diálogo";
 	}
 	var ok:FlxTextFormat = new FlxTextFormat(0xFFF8FF00,false,false,0xFFF8FF00);
 	var markerBool:Bool = false;
@@ -247,14 +247,27 @@ class DialogueBox extends FlxSpriteGroup
 			}
 		}
 
-		if (PlayerSettings.player1.controls.BACK && dialogueStarted && !isEnding && !cheating)
+		#if android
+                        var justTouched:Bool = false;
+
+		        for (touch in FlxG.touches.list)
+		        {
+			        if (touch.justPressed)
+			        {
+				        justTouched = true;
+			        }
+		        }
+		        #end
+				
+		if (FlxG.keys.justPressed.ANY #if android || justTouched #end && dialogueStarted == true)
 		{
+		
 			isEnding = true;
 
 			if (music != null && music.playing)
 				music.fadeOut(2);
 			new FlxTimer().start(0.2, function(tmr:FlxTimer)
-				{
+				
 					box.alpha -= 1 / 5;
 						
 					portraitBF.visible = false;

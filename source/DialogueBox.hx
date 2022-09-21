@@ -267,7 +267,7 @@ class DialogueBox extends FlxSpriteGroup
 			if (music != null && music.playing)
 				music.fadeOut(2);
 			new FlxTimer().start(0.2, function(tmr:FlxTimer)
-				
+				{
 					box.alpha -= 1 / 5;
 						
 					portraitBF.visible = false;

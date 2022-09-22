@@ -5011,7 +5011,6 @@ addAndroidControls();
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
 							
-							LoadingState.loadAndSwitchState(new VideoState(Paths.video('final'), new PlayState()));
 							
 							 {
 							

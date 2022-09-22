@@ -55,7 +55,6 @@ class VideoState extends MusicBeatState
 		FlxG.switchState(nextState);
 		}
 	}
-}
 
 	function onURLChanging(url:String) {
 		text.alpha = 1;

@@ -1711,12 +1711,11 @@ addAndroidControls();
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
-					sim = true;
-					LoadingState.loadAndSwitchState(new VideoState(Paths.video('intro'), new PlayState()));
 					
-					//{
-					//	papyintro(doof);
-					//}
+					var video:VideoHandler = new VideoHandler();
+					video.playVideo(Paths.video('intro'));
+					video.finishCallback = function() 
+						
 				case 'dating-fight' | 'bone-brothers':
 					papyintro(doof);
 				case 'ugh' | 'guns' | 'stress':
@@ -5006,7 +5005,9 @@ addAndroidControls();
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
 							
-							LoadingState.loadAndSwitchState(new VideoState(Paths.video('final'), new PlayState()));
+							var video:VideoHandler = new VideoHandler();
+					video.playVideo(Paths.video('final'));
+					video.finishCallback = function() 
 							 {
 							
 								WeekData.loadTheFirstEnabledMod();

@@ -1715,7 +1715,9 @@ addAndroidControls();
 					var video:VideoHandler = new VideoHandler();
 					video.playVideo(Paths.video('intro'));
 					video.finishCallback = function() 
-						
+					{
+						papyintro(doof);
+					}	
 				case 'dating-fight' | 'bone-brothers':
 					papyintro(doof);
 				case 'ugh' | 'guns' | 'stress':

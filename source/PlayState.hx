@@ -1715,9 +1715,7 @@ addAndroidControls();
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
-					var video:VideoHandler = new VideoHandler();
-					video.playVideo(Paths.video('intro'));
-					video.finishCallback = function() 
+					LoadingState.loadAndSwitchState(new VideoState(Paths.video('intro'), new PlayState()));
 					
 					{
 						papyintro(doof);
@@ -5010,7 +5008,7 @@ addAndroidControls();
 						{
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
-							
+							LoadingState.loadAndSwitchState(new VideoState(Paths.video('final'), new PlayState()));
 							
 							 {
 							

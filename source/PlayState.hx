@@ -105,6 +105,10 @@ class PortraitThing extends MusicBeatState
 				bg.screenCenter(X);
 		
 				add(bg);
+				
+				#if android
+		addVirtualPad(NONE, A);
+		#end
 			}
 		}
 

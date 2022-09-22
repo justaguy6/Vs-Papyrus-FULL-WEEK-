@@ -49,9 +49,7 @@ class VideoState extends MusicBeatState
 
 	function onClose(){// not working
 		text.alpha = 0;
-		if(PlayState.sim) {
-		PlayState.papyintro(doof);
-		 	} else {
+		
 		FlxG.switchState(nextState);
 		}
 	}

@@ -47,7 +47,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
           haxelib install lime 7.9.0
-          haxelib install hxCodec
+          
           haxelib install openfl 9.1.0
           haxelib --never install flixel
           haxelib run lime setup flixel
@@ -55,6 +55,7 @@ jobs:
           haxelib install flixel-ui
           haxelib install hscript
           haxelib install flixel-addons
+          haxelib git hxCodec https://github.com/polybiusproxy/hxCodec --quiet
           haxelib git linc_luajit https://github.com/MAJigsaw77/linc_luajit
           haxelib git extension-webview https://github.com/MatheusSilver/extension-webview --quiet
           haxelib git extension-videoview https://github.com/MAJigsaw77/extension-videoview --quiet

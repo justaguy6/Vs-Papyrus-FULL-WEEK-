@@ -188,6 +188,7 @@ class PlayState extends MusicBeatState
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
 	public static var isStoryMode:Bool = false;
+	public static var sim:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
@@ -1710,12 +1711,12 @@ addAndroidControls();
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
-					
+					sim = true;
 					LoadingState.loadAndSwitchState(new VideoState(Paths.video('intro'), new PlayState()));
 					
-					{
-						papyintro(doof);
-					}
+					//{
+					//	papyintro(doof);
+					//}
 				case 'dating-fight' | 'bone-brothers':
 					papyintro(doof);
 				case 'ugh' | 'guns' | 'stress':

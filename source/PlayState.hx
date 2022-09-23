@@ -1716,10 +1716,7 @@ addAndroidControls();
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
 					LoadingState.loadAndSwitchState(new VideoState(Paths.video('intro'), new PlayState()));
-					
-					{
-						papyintro(doof);
-					}	
+					onClose = papyintro(doof);	//idk
 				case 'dating-fight' | 'bone-brothers':
 					papyintro(doof);
 				case 'ugh' | 'guns' | 'stress':

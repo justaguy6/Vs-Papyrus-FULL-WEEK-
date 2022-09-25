@@ -1,6 +1,5 @@
 package;
 
-import
 import flixel.addons.display.FlxBackdrop;
 import flixel.math.FlxRandom;
 import flixel.addons.text.FlxTypeText;
@@ -70,7 +69,7 @@ import sys.FileSystem;
 #end
 
 #if VIDEOS_ALLOWED
-import VideoHandler;
+import vlc.MP4Handler;
 #end
 
 using StringTools;
@@ -106,53 +105,10 @@ class PortraitThing extends MusicBeatState
 				bg.screenCenter(X);
 		
 				add(bg);
-				
-				#if android
-		addVirtualPad(NONE, A);
-		#end
 			}
 		}
 
 	}
-	
-	class PlayStateVideoState extends MusicBeatState
-{
-	public static var androidPath:String = 'file:///android_asset/';
-	var text:FlxText;
-
-	public function new(source:String)
-	{
-		super();
-
-		text = new FlxText(0, 0, 0, "toque para continuar", 48);
-		text.screenCenter();
-		text.alpha = 0;
-		add(text);
-
-		WebView.onClose=onClose;
-		WebView.onURLChanging=onURLChanging;
-
-		WebView.open(androidPath + source + '.html', false, null, ['http://exitme(.*)']);
-	}
-
-	public override function update(dt:Float) {
-		for (touch in FlxG.touches.list)
-			if (touch.justReleased)
-				onClose(); //hmmmm maybe
-
-		super.update(dt);
-	}
-
-	function onClose(){// not working
-		text.alpha = 0;
-	MusicBeatState.switchState(new PlayState(papyintro(doof))); //NÃO SEI
-	}
-
-	function onURLChanging(url:String) {
-		text.alpha = 1;
-		if (url == 'http://exitme(.*)') onClose(); // drity hack lol
-	}
-}
 	override function update(elapsed:Float) 
 	{	
 		if (PlayerSettings.player1.controls.ACCEPT){
@@ -232,7 +188,6 @@ class PlayState extends MusicBeatState
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
 	public static var isStoryMode:Bool = false;
-	public static var sim:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
@@ -1575,20 +1530,10 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
-	
-	var creditTxt = new FlxText(876, 648, 348);
-     creditTxt.text = "PORTED BY\nFNF BR";
-    creditTxt.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
-    creditTxt.scrollFactor.set();
-    add(creditTxt);
-	
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 
-	if(ClientPrefs.downScroll) {
-			creditTxt.y = 148;
-		}
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -1596,7 +1541,6 @@ class PlayState extends MusicBeatState
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
-	creditTxt.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
@@ -1604,10 +1548,7 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		tut.cameras = [camOther];
-	
-               #if android
-addAndroidControls();
-#end
+
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1755,7 +1696,12 @@ addAndroidControls();
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
-					MusicBeatState.switchState(new PlayStateVideoState(('assets/videos/intro')));
+					var video:MP4Handler = new MP4Handler();
+					video.playVideo(Paths.video('intro'));
+					video.finishCallback = function() 
+					{
+						papyintro(doof);
+					}
 				case 'dating-fight' | 'bone-brothers':
 					papyintro(doof);
 				case 'ugh' | 'guns' | 'stress':
@@ -1961,7 +1907,7 @@ addAndroidControls();
 			return;
 		}
 
-		var video:VideoHandler = new VideoHandler();
+		var video:MP4Handler = new MP4Handler();
 		video.playVideo(filepath);
 		video.finishCallback = function()
 		{
@@ -2470,10 +2416,6 @@ addAndroidControls();
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
-			#if android
-			androidControls.visible = true;
-			#end
-				
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			if(currentSong == 'bad to the bone'){
@@ -5044,10 +4986,9 @@ addAndroidControls();
 						{
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
-							LoadingState.loadAndSwitchState(new VideoState(Paths.video('final'), new PlayState()));
-							
-							 {
-							
+							var video:MP4Handler = new MP4Handler();
+							video.playVideo(Paths.video('final'));
+							video.finishCallback = function() {
 								WeekData.loadTheFirstEnabledMod();
 								FlxG.sound.playMusic(Paths.music('freakyMenu'));
 	

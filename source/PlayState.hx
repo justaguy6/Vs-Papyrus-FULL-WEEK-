@@ -1530,10 +1530,20 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
+	
+	var creditTxt = new FlxText(876, 648, 348);
+     creditTxt.text = "PORTED BY\nFNF BR";
+    creditTxt.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+    creditTxt.scrollFactor.set();
+    add(creditTxt);
+
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 
+	if(ClientPrefs.downScroll) {
+			creditTxt.y = 148;
+		}
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -1541,6 +1551,7 @@ class PlayState extends MusicBeatState
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
+	creditTxt.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
@@ -1548,7 +1559,9 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		tut.cameras = [camOther];
-
+               #if android
+addAndroidControls();
+#end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1696,9 +1709,7 @@ class PlayState extends MusicBeatState
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
-					var video:MP4Handler = new MP4Handler();
-					video.playVideo(Paths.video('intro'));
-					video.finishCallback = function() 
+					
 					{
 						papyintro(doof);
 					}
@@ -2416,6 +2427,10 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
+			#if android
+			androidControls.visible = true;
+			#end
+				
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			if(currentSong == 'bad to the bone'){
@@ -4986,9 +5001,7 @@ class PlayState extends MusicBeatState
 						{
 							//if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
 								//FreeplayState.songUnlock[2] = true;
-							var video:MP4Handler = new MP4Handler();
-							video.playVideo(Paths.video('final'));
-							video.finishCallback = function() {
+							 {
 								WeekData.loadTheFirstEnabledMod();
 								FlxG.sound.playMusic(Paths.music('freakyMenu'));
 	

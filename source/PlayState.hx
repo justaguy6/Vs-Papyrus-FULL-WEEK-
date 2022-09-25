@@ -81,7 +81,7 @@ class PortraitThing extends MusicBeatState
 	var song:String = '';
 	public var finished:Void ->Void;
 
-	override public function new (explain:Bool = false, song:String = "") 
+	/*override public function new (explain:Bool = false, song:String = "") 
 	{
 		/*super();
 		if (!explain){
@@ -126,9 +126,9 @@ class PortraitThing extends MusicBeatState
 			}
 		}
 		super.update(elapsed);	
-	}*/
+	}
 
-}
+}*/
 
 class PlayState extends MusicBeatState
 {

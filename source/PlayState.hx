@@ -83,7 +83,7 @@ class PortraitThing extends MusicBeatState
 
 	override public function new (explain:Bool = false, song:String = "") 
 	{
-		super();
+		/*super();
 		if (!explain){
 			bg =  new FlxSprite().loadGraphic(Paths.image('mainmenu/unlock'));
 			bg.screenCenter(X);
@@ -126,7 +126,7 @@ class PortraitThing extends MusicBeatState
 			}
 		}
 		super.update(elapsed);	
-	}
+	}*/
 
 }
 

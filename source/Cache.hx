@@ -53,7 +53,7 @@ class Cache extends FlxState
 		FlxG.worldBounds.set(0, 0);
         #if sys
 	var list = Assets.list();	
-	var charImageList = list.filter(text -> text.contains("assets/shared/images/characters")));	
+	var charImageList = list.filter(text -> text.contains("assets/shared/images/characters"));	
         for (file in charImageList)  
         {
             if(file.endsWith(".png"))

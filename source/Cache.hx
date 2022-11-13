@@ -56,8 +56,10 @@ class Cache extends FlxState
 	var charImageList = list.filter(text -> text.contains("assets/shared/images/characters"));	
         for (file in charImageList)  
         {
-            if(file.endsWith(".png"))
-            images.push('${file}');
+            if (!i.endsWith(".png"))
+                continue;
+
+            images.push(i);
 
         }
         #end

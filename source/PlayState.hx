@@ -111,7 +111,7 @@ class PortraitThing extends MusicBeatState
 	}
 	override function update(elapsed:Float) 
 	{	
-		if (PlayerSettings.player1.controls.ACCEPT || FlxG.android.justReleased.BACK #end){
+		if (PlayerSettings.player1.controls.ACCEPT || FlxG.android.justReleased.BACK){
 			if (explan){
 				trace('okay');
 				FlxG.sound.play(Paths.sound('undertale Save'));

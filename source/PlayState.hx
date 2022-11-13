@@ -68,9 +68,7 @@ import Conductor.Rating;
 import sys.FileSystem;
 #end
 
-#if VIDEOS_ALLOWED
-import VideoHandler;
-#end
+
 
 using StringTools;
 

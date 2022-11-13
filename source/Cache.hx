@@ -1,7 +1,7 @@
 
 package;
 
-#if windows
+
 import flixel.math.FlxMath;
 import flixel.ui.FlxBar;
 import flixel.text.FlxText;
@@ -13,7 +13,7 @@ import flixel.graphics.FlxGraphic;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
 import openfl.display.BitmapData;
-
+import openfl.utils.Assets;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
@@ -52,12 +52,13 @@ class Cache extends FlxState
         FlxG.mouse.visible = false;
 		FlxG.worldBounds.set(0, 0);
         #if sys
-        for (i in FileSystem.readDirectory(FileSystem.absolutePath( "assets/shared/images/characters")))
+	var list = Assets.list();	
+	var charImageList = list.filter(text -> text.contains("assets/shared/images/characters")))	
+        for (file in charImageList)  
         {
-            if (!i.endsWith(".png"))
-                continue;
+            if(file.endsWith(".png"))
+            images.push('${file}');
 
-            images.push(i);
         }
         #end
         BG = new FlxSprite().loadGraphic(Paths.image('bg paps'));
@@ -110,7 +111,7 @@ class Cache extends FlxState
             for (i in images)
                 {
                     thing = 'Bones';
-                    var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
+                    var data:BitmapData = Assets.getBitmapData("assets/shared/images/characters/" + i);
                     var graph = FlxGraphic.fromBitmapData(data);
                     graph.persist = true;
                     graph.destroyOnNoUse = false;
@@ -172,4 +173,4 @@ class Cache extends FlxState
 			});
     }
 }
-#end
+

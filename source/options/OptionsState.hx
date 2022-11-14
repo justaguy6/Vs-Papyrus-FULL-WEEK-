@@ -122,7 +122,7 @@ class OptionsState extends MusicBeatState
 			changeSelection(1);
 		}
 
-		if (controls.BACK || FlxG.android.justReleased.BACK) {
+		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
 		}

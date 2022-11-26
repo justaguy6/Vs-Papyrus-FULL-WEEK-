@@ -38,7 +38,8 @@ class Main extends Sprite
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 	public static var fpsVar:FPS;
 	public static var gameName:String = "Friday Night Funkin' Vs THE GREAT PAPYRUS!!";
-
+	public static var path:String = lime.system.System.applicationStorageDirectory;
+	
         static final videoFiles:Array<String> = [
 		
 	]; // put here names of all videos without .mp4, example "final"

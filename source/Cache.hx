@@ -136,7 +136,7 @@ class Cache extends FlxState
                 }
         }
     }
- 
+} 
 class MobileSys
 {
     public static function justTouched():Bool

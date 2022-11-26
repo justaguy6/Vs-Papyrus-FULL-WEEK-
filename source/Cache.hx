@@ -138,7 +138,8 @@ class Cache extends FlxState
         }
     }
 } 
-    //taken from kade
+    
+//taken from kade
     function truncateFloat( number : Float, precision : Int): Float {
 		var num = number;
 		num = num * Math.pow(10, precision);
@@ -173,4 +174,3 @@ class Cache extends FlxState
 			});
     }
 }
-

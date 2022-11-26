@@ -25,6 +25,7 @@ import sys.io.Process;
 #end
 
 import sys.io.File;
+import lime.system.System;
 using StringTools;
 
 class Main extends Sprite
@@ -38,7 +39,7 @@ class Main extends Sprite
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 	public static var fpsVar:FPS;
 	public static var gameName:String = "Friday Night Funkin' Vs THE GREAT PAPYRUS!!";
-	public static var path:String = lime.system.System.applicationStorageDirectory;
+	public static var path:String = System.applicationStorageDirectory;
 	
         static final videoFiles:Array<String> = [
 		

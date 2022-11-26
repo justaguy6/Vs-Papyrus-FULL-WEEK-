@@ -137,7 +137,6 @@ class Cache extends FlxState
                 }
         }
     }
-} 
     
 //taken from kade
     function truncateFloat( number : Float, precision : Int): Float {

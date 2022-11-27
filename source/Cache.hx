@@ -104,21 +104,16 @@ class Cache extends FlxState
 		add(text);
 		add(dog);
         
-
-        sys.thread.Thread.create(() ->
-		{
-            for (i in images)
-                {
+		
                     thing = 'Bones';
-                    var data:BitmapData = Assets.getBitmapData("assets/shared/images/characters/" + i);
-                    var graph = new Bitmap(bitmapData);
-                    graph.persist = true;
-                    graph.destroyOnNoUse = false;
-                    bitmapData.set(i.replace(".png", ""),graph);
+	    	    var imagem:String = "" + extensao;
+		    var extensao:String = ".png";	    	
+                    var data:FlxSprite = MobileSys.readDirectory("assets/shared/images/characters/" + imagem);
+                    imagem.replace(".png", "");
+	            add(data);
+	    	    remove(data);
                     updatePros();
-                }
-		});
-
+	    
         super.create();
     }
     override function update(elaspsed) 

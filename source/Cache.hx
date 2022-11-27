@@ -108,7 +108,7 @@ class Cache extends FlxState
         
 		
                     thing = 'Bones';
-	    	    personagens = ['BFP-Flipped', 'BFP', 'BOYFRIEND', 'BOYFRIENDRed', 'BOYFRIEND_DEAD', 'BOYFRIENDblue', 'Bf Paps', 'BoyfriendWHITE', 'CoolBf', 'Dedbf', 'EXGaster', 'EXGasterdark', 'GF_assets', 'LostPaps', 'Mystery Man', 'PaPatas', 'Papyrus', 'ReadyPaps', 'Sans', 'SansWhite', 'bf heart', 'bonedBF', 'cooldude', 'fish', 'gasterexe-shaded', 'gfSans', 'goopMad', 'lostsans-shaded', 'toastedbf';
+	    	    personagens = ['BFP-Flipped', 'BFP', 'BOYFRIEND', 'BOYFRIENDRed', 'BOYFRIEND_DEAD', 'BOYFRIENDblue', 'Bf Paps', 'BoyfriendWHITE', 'CoolBf', 'Dedbf', 'EXGaster', 'EXGasterdark', 'GF_assets', 'LostPaps', 'Mystery Man', 'PaPatas', 'Papyrus', 'ReadyPaps', 'Sans', 'SansWhite', 'bf heart', 'bonedBF', 'cooldude', 'fish', 'gasterexe-shaded', 'gfSans', 'goopMad', 'lostsans-shaded', 'toastedbf'];
 	    	    var imagem:String = personagens;	    	
                     var data:FlxSprite = new FlxSprite(FlxG.width, FlxG.height).loadGraphic(Paths.getSparrowAtlas(personagens, 'shared'));
 		    add(data);

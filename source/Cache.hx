@@ -38,9 +38,7 @@ class Cache extends FlxState
 
     var barBG:FlxSprite;
     var bar:FlxBar;
-    public static var personagens:Array<String>= ['BFP-Flipped', 'BFP', 'BOYFRIEND', 'BOYFRIENDRed', 'BOYFRIEND_DEAD', 'BOYFRIENDblue', 'Bf Paps', 'BoyfriendWHITE', 'CoolBf', 'Dedbf', 'EXGaster', 'EXGasterdark', 'GF_assets', 'LostPaps', 'Mystery Man', 'PaPatas', 'Papyrus', 'ReadyPaps', 'Sans', 'SansWhite', 'bf heart', 'bonedBF', 'cooldude', 'fish', 'gasterexe-shaded', 'gfSans', 'goopMad', 'lostsans-shaded', 'toastedbf'];
     
-
     var bitmapData:Map<String,FlxGraphic> = new Map<String,FlxGraphic>();
 
 	var images = [];
@@ -55,7 +53,7 @@ class Cache extends FlxState
         FlxG.mouse.visible = false;
 	    	FlxG.worldBounds.set(0, 0);
       
-        for (i in MobileSys.readDirectory(Main.path + "assets/shared/images/characters"))
+        for (i in HSys.readDirectory("assets/shared/images/characters"))
         {
             if (!i.endsWith(".png"))
                 continue;
@@ -106,12 +104,15 @@ class Cache extends FlxState
 		add(text);
 		add(dog);
         
-		
-                    thing = 'Bones';
-	    	    var imagem:String = personagens;	    	
-                    var data:FlxSprite = new FlxSprite(FlxG.width, FlxG.height).loadGraphic(Paths.getSparrowAtlas(personagens, 'shared'));
-		    add(data);
-	    	    remove(data);
+		sys.thread.Thread.create(() ->
+		{
+            for (i in images)
+                {
+                    var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
+                    var graph = FlxGraphic.fromBitmapData(data);
+                    graph.persist = true;
+                    graph.destroyOnNoUse = false;
+                    bitmapData.set(i.replace(".png", ""),graph);
                     updatePros();
 	    
         super.create();

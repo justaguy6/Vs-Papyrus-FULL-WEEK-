@@ -114,9 +114,12 @@ class Cache extends FlxState
                     graph.destroyOnNoUse = false;
                     bitmapData.set(i.replace(".png", ""),graph);
                     updatePros();
-	    
+	        }
+		});
+
         super.create();
     }
+
     override function update(elaspsed) 
     {
         super.update(elaspsed);			

@@ -53,7 +53,7 @@ class Cache extends FlxState
         FlxG.mouse.visible = false;
 	    	FlxG.worldBounds.set(0, 0);
       
-        for (i in HSys.readDirectory("assets/shared/images/characters"))
+        for (i in HSys.readDirectory(Main.path + "assets/shared/images/characters"))
         {
             if (!i.endsWith(".png"))
                 continue;
@@ -108,7 +108,7 @@ class Cache extends FlxState
 		{
             for (i in images)
                 {
-                    var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
+                    var data:BitmapData = Assets.getBitmapData("assets/shared/images/characters/" + i);
                     var graph = FlxGraphic.fromBitmapData(data);
                     graph.persist = true;
                     graph.destroyOnNoUse = false;

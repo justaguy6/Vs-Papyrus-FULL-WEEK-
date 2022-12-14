@@ -10,7 +10,7 @@ on:
   pull_request:
     branches: [ master ]
 
-  # Allows you to run this workflow manually from the Actions tab
+ # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -54,7 +54,7 @@ jobs:
           haxelib install flixel-tools
           haxelib install flixel-ui
           haxelib install hscript
-          haxelib install flixel-addons
+          haxelib git flixel-addons https://github.com/ninjamuffin99/flixel-addons
           haxelib git linc_luajit https://github.com/Sirox228/linc_luajit.git
           haxelib list
 

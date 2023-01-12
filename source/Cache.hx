@@ -53,7 +53,7 @@ class Cache extends FlxState
         FlxG.mouse.visible = false;
 	    	FlxG.worldBounds.set(0, 0);
       
-        for (i in HSys.readDirectory("assets/shared/images/characters"))
+        for (i in HSys.readDirectory("assets/shared/images/"))
         {
             if (!i.endsWith(".png"))
                 continue;

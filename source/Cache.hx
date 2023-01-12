@@ -108,7 +108,7 @@ class Cache extends FlxState
 		{
             for (i in images)
                 {
-                    var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
+                    var data:BitmapData = BitmapData.fromFile("assets/shared/images/" + i);
                     var graph = FlxGraphic.fromBitmapData(data);
                     graph.persist = true;
                     graph.destroyOnNoUse = false;

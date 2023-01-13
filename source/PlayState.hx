@@ -1568,34 +1568,16 @@ addAndroidControls();
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 
-		// SONG SPECIFIC SCRIPTS
-		#if LUA_ALLOWED
-		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
-
-		#if MODS_ALLOWED
-		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/data/' + Paths.formatToSongPath(SONG.song) + '/'));
-
-		for(mod in Paths.getGlobalMods())
-			foldersToCheck.insert(0, Paths.mods(mod + '/data/' + Paths.formatToSongPath(SONG.song) + '/' ));// using push instead of insert because these should run after everything else
-		#end
-
-		for (folder in foldersToCheck)
-		{
-			if(FileSystem.exists(folder))
-			{
-				for (file in FileSystem.readDirectory(folder))
-				{
-					if(file.endsWith('.lua') && !filesPushed.contains(file))
-					{
-						luaArray.push(new FunkinLua(folder + file));
-						filesPushed.push(file);
-					}
-				}
+		#if (LUA_ALLOWED)
+		var doPush:Bool = false;
+		var luaFile:String = 'data/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
+			luaFile = Paths.getPreloadPath(luaFile);
+			if(OpenFlAssets.exists(luaFile)) {
+				doPush = true;
 			}
-		}
+		
+		if(doPush) 
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 		#end
 
 		failDial = new FlxTypeText(100,550,Std.int(FlxG.width * 0.9) - 100 ," ",28);
@@ -2874,11 +2856,9 @@ addAndroidControls();
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
 		var file:String = Paths.json(songName + '/events');
-		#if MODS_ALLOWED
-		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file)) {
-		#else
+		
 		if (OpenFlAssets.exists(file)) {
-		#end
+		
 			var eventsData:Array<Dynamic> = Song.loadFromJson('events', songName).events;
 			for (event in eventsData) //Event Notes
 			{
@@ -3888,7 +3868,7 @@ addAndroidControls();
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if (controls.PAUSE #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', [], false);
 			if(ret != FunkinLua.Function_Stop) {

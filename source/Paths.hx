@@ -193,14 +193,14 @@ class Paths
 
 	static public function video(key:String)
 	{
-		#if MODS_ALLOWED
-		var file:String = Shit.applicationStorageDirectory + modsVideo(key);
-		if(FileSystem.exists(file)) {
-			return file;
-		}
-		#end
-		return Shit.applicationStorageDirectory + 'assets/videos/$key.$VIDEO_EXT';
+		return Generic.returnPath() + 'assets/videos/$key.$VIDEO_EXT';
 	}
+	
+	static public function _video(key:String)
+	{
+		return 'assets/videos/$key.$VIDEO_EXT';
+	}
+
 
         static public function _video(key:String)
 	{

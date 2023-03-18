@@ -67,7 +67,7 @@ import Conductor.Rating;
 #if sys
 import sys.FileSystem;
 #end
-
+import hxcodec.VideoHandler;
 
 
 using StringTools;

@@ -202,11 +202,7 @@ class Paths
 	}
 
 
-        static public function _video(key:String)
-	{
-		return 'assets/videos/$key.$VIDEO_EXT';
-	}
-
+        
 	static public function sound(key:String, ?library:String):Sound
 	{
 		var sound:Sound = returnSound('sounds', key, library);

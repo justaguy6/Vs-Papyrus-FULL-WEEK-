@@ -1885,7 +1885,7 @@ addAndroidControls();
 
 	public function startVideo(name:String)
 	{
-		#if windows 
+		#if sys 
 		inCutscene = true;
 
 		var filepath:String = Paths.video(name);

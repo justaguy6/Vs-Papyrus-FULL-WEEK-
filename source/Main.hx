@@ -41,10 +41,10 @@ class Main extends Sprite
 	public static var gameName:String = "Friday Night Funkin' Vs THE GREAT PAPYRUS!!";
 	public static var path:String = System.applicationStorageDirectory;
 	
-        static final videoFiles:Array<String> = [
-		
-	]; // put here names of all videos without .mp4, example "final"
-
+        static final losvideos:Array<String> = [
+		"intro",
+                "final",
+	]; //better way to do this
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
 	public static function main():Void
@@ -90,15 +90,16 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 
-                if (!FileSystem.exists(lime.system.System.applicationStorageDirectory + 'assets')) {
-			FileSystem.createDirectory(lime.system.System.applicationStorageDirectory + 'assets');
+                Generic.mode = ROOTDATA;
+		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets');
 		}
-		if (!FileSystem.exists(lime.system.System.applicationStorageDirectory + 'assets/videos')) {
-			FileSystem.createDirectory(lime.system.System.applicationStorageDirectory + 'assets/videos');
+		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
 		}
 
-                for (vid in videoFiles) {
-			File.saveBytes(Paths.video(vid), Assets.getBytes('videos:' + Paths._video(vid)));
+               for (video in losvideos) {
+			Generic.copyContent(Paths._video(video), Paths._video(video));
 		}
 	
 		ClientPrefs.loadDefaultKeys();

@@ -1690,7 +1690,7 @@ addAndroidControls();
 					schoolIntro(doof);
 				case 'bad-to-the-bone':
 					var video:VideoHandler = new VideoHandler();
-					video.playVideo(Paths.video('intro'));
+					video.playVideo(Paths.video(Asset2File.getPath('assets/videos/intro.mp4')));
 					video.finishCallback = function() 
 					{
 						papyintro(doof);
